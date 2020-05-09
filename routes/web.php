@@ -19,6 +19,7 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api', 'namespace' => '\App\Http\Controllers'], function () use ($router) {
     $router->get('books', ['uses' => 'BookController@showAllBooks']);
+    $router->post('books', ['uses' => 'BookController@create']);
     $router->get('books/{id}', ['uses' => 'BookController@showBook']);
     $router->put('books/{id}', ['uses' => 'BookController@update']);
     $router->delete('books/{id}', ['uses' => 'BookController@delete']);

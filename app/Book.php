@@ -10,10 +10,13 @@ class Book extends \Illuminate\Database\Eloquent\Model
         'url', 'name', 'isbn', 'authors', 'numberOfPages', 'publisher', 'country', 'mediaType', 'released', 'characters', 'povCharacters',
     ];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-//    protected $hidden = [];
+    protected $casts = [
+        'authors' => 'array',
+        'characters' => 'array',
+        'povCharacters' => 'array',
+    ];
+
+    protected $hidden = [
+        'created_at', 'updated_at',
+    ];
 }

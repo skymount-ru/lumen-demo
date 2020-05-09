@@ -18,10 +18,21 @@ class BookController extends Controller
         return response()->json(Book::query()->find($id));
     }
 
+    public function create(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'isbn' => 'required|unique:books',
+            'numberOfPages' => 'required|integer',
+        ]);
+        $book = Book::query()->create($request->json()->all());
+        return response()->json($book, 201);
+    }
+
     public function update($id, Request $request)
     {
         $book = Book::query()->findOrFail($id);
-        $book->update($request->all());
+        $book->update($request->json()->all());
 
         return response()->json($book, 200);
     }
