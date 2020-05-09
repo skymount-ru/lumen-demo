@@ -23,4 +23,7 @@ $router->group(['prefix' => 'api', 'namespace' => '\App\Http\Controllers'], func
     $router->get('books/{id}', ['uses' => 'BookController@showBook']);
     $router->put('books/{id}', ['uses' => 'BookController@update']);
     $router->delete('books/{id}', ['uses' => 'BookController@delete']);
+
+    $router->post('graphql', ['uses' => 'GraphqlController@index']);
+    $router->options('graphql', ['uses' => 'GraphqlController@index']);
 });
