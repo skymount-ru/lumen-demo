@@ -6,13 +6,39 @@ namespace App\Http\Controllers;
 use App\Book;
 use Illuminate\Http\Request;
 
+/**
+ * @OA\Info(title="Books API", version="0.1")
+ */
+
 class BookController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     path="/api/books",
+     *     @OA\Response(response="200", description="All books")
+     * )
+     */
     public function showAllBooks()
     {
         return response()->json(Book::all());
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/book/{id}",
+     *     operationId="findBookById",
+     *     @OA\Parameter(
+     *      in="path",
+     *      name="id",
+     *      required=true,
+     *      @OA\Schema(
+     *          type="integer",
+     *          format="int64",
+     *      )
+     *     ),
+     *     @OA\Response(response="200", description="All books")
+     * )
+     */
     public function showBook($id)
     {
         return response()->json(Book::query()->find($id));

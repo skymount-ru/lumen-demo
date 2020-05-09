@@ -37,6 +37,7 @@ $app->withEloquent();
 | your own bindings here if you like or you can make another file.
 |
 */
+$app->configure('swagger-lume');
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
@@ -93,6 +94,8 @@ $app->configure('app');
 if (env('APP_ENV') === 'local') {
     $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 }
+
+$app->register(\SwaggerLume\ServiceProvider::class);
 
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
